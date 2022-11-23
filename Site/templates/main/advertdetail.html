@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        {% for item in photo %}
+        <div data-bs-interval="2000" class="carousel-item text-center text-light mb-5 {% if forloop.first %} active {% endif %}">
+            <img src="{{ item.image.url }}" style="width:600px; height:600px;">
+            <div class="carousel-caption capt">
+                <h6>{{ item.title }}</h6>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">{{ adv.date }}</div>
+    <div class="card-body">
+        <h5 class="card-title">{{ adv.title }}</h5>
+        <h5 class="card-title">{{ adv.phone }}</h5>
+        <h5 class="card-title">{{ adv.email }}</h5>
+        <p class="card-text">{{ adv.text }}</p>
+        {% if permit %} <! Если пользователь не "хозяин" объявления то не отображает кнопки" !>
+        <a href="{{ adv.get_UpdateUrl }}" class="btn btn-primary">Редактировать</a>
+        <a href="{{ adv.get_DeleteUrl }}" class="btn btn-danger">Удалить</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

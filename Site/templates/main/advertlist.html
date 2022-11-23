@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<div class="row" style="margin-left: 300px; margin-top: 30px; text-align: center">
+    <div class="col-md-5">
+        {% for item in adv %}
+        <!-- выбираем номер id записи и если оно делится на 2 без остатка, то True и выводим -->
+        {% if item.id|divisibleby:"2" %}
+        <div class="card"> <! порядок выведения информации на странице !>
+            <div class="card-body">
+                <a href="{{ item.get_detailUrl }}"><img src="{% static '/img/Zaglushka.png' %}" width='400' height="400" alt="Заглушка"></a>
+                <h5 class="card-title">{{ item.title }}</h5>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+    <div class="col-md-5">
+        <div class="col">
+            {% for item in adv %}
+            <!-- выбираем номер id записи и если оно НЕ делится на 2 без остатка, то True и выводим -->
+            {% if not item.id|divisibleby:"2" %}
+            <div class="card"> <! порядок выведения информации на странице !>
+                <div class="card-body">
+                    <a href="{{ item.get_detailUrl }}"><img src="{% static '/img/Zaglushka.png' %}" width='400' height="400" alt="Заглушка"></a>
+                    <h5 class="card-title">{{ item.title }}</h5>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% include 'paginator.html' %}
+{% endblock %}
+
+
+<!--{% for item in adv %}
+<div class="container">
+    <div class="row">
+        <div class="col-xs-6">
+            <div class="card"> <! порядок выведения информации на странице !>
+                <p class="card-header">{{ item.date }}</p>
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.title }}</h5>
+                    <p class="card-text">{{ item.text }}</p>
+                    <a href="{{ item.get_detailUrl }}" class="btn btn-primary">Подробнее</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %} !>

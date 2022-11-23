@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form action="{% url 'adv_create' %}" method="post">
+      {% csrf_token %}
+      {% for field in form %}
+      <div class="form-group col-md-8">
+        <p style="margin-left: 40px">{{ field.label }}{{ field }}</p><br>
+      </div>
+      {% endfor %}
+      <div class="form-group col-md-6">
+        <p style="margin-left: 40px"><button type="submit" class ="btn btn-primary">Save</button></p>
+      </div>
+    </form>
+
+{% endblock %}

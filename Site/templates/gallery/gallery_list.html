@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% for item in gallery %}
+<div class="card"> <! порядок выведения информации на странице !>
+  <div class="card-body">
+    <h5 class="card-title">{{ item.title }}</h5>
+    <a href="{{ item.get_detailUrl }}" class="btn btn-primary">Редактировать название</a>
+    <a href="/gallery/photolist/{{ item.pk }}" class="btn btn-info">Изменить набор фоток</a>
+    <a href="{{ item.get_deleteUrl }}" class="btn btn-danger">Удалить</a>
+  </div>
+</div>
+{% endfor %}
+{% include 'paginator.html' %}
+{% endblock %}
